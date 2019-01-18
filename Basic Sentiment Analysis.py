@@ -6,6 +6,9 @@ str = ['In love with the song']
 s= []
 a=0
 score = 0
+
+#tokenization
+
 for line in str:
     s.append(line.split())
 z = 0
@@ -13,6 +16,8 @@ r = 0
 c = 0
 n=''
 s_str = s
+
+#removing punctuations from the tokens
 
 for line in s:
     for word in line:
@@ -26,6 +31,9 @@ for line in s:
 s_str=s
 del s
 s = []
+
+#removing stopwords
+
 for i in range(0,len(s_str)):
     s.append([])
     for j in range(0,len(s_str[i])):
@@ -36,6 +44,9 @@ f = open('EffectWordNet.tff')
 word_list = []
 effect = {'-ve':[],'+ve':[],'null':[]}
 effect2 = {'-ve':[],'+ve':[],'null':[]}
+
+#creating a dictionary that contains words having +ve, -ve and null sentiments
+
 for line in f:
     word_list.append(line)
 
@@ -55,6 +66,7 @@ for i in range(0,len(w)):
         else:
             effect['null'].append(w[i][2])
             break
+            
 for i in range(0,len(effect['-ve'])):
     for j in range(0,len(effect['-ve'][i])):
         effect2['-ve'].append(effect['-ve'][i].split(','))
@@ -69,6 +81,8 @@ for i in range(0,len(effect['null'])):
     for j in range(0,len(effect['null'][i])):
         effect2['null'].append(effect['null'][i].split(','))
         break
+
+#calculating sentiments by simply adding +1 or -1 for each word having +ve or -ve sentiment
 
 for line in s:
     for word in line:
